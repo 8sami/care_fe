@@ -94,24 +94,24 @@ function EncounterCard({
       )}
       <CardContent className="flex flex-col px-4 py-3 gap-2">
         <div className="flex justify-between items-center">
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-1 min-w-0">
             <span className="text-base font-semibold">
               {t(`encounter_class__${encounter.encounter_class}`)}
             </span>
             <span className="text-sm font-medium text-gray-700">
               {isSameFacility && careTeam.length > 0 ? (
                 <span className="flex items-center gap-1">
-                  <span className="truncate max-w-40">
+                  <span className="block truncate max-w-40">
                     {formatName(careTeam[0].member)}
                   </span>
                   {additionalMembersCount > 0 && (
-                    <span className="text-xs text-gray-500">
+                    <span className="text-xs text-gray-500 flex-shrink-0">
                       +{additionalMembersCount}
                     </span>
                   )}
                 </span>
               ) : (
-                <span className="truncate max-w-40">
+                <span className="block truncate max-w-62 sm:max-w-50">
                   {encounter.facility.name}
                 </span>
               )}
@@ -127,7 +127,7 @@ function EncounterCard({
               </div>
             )}
           </div>
-          <div className="flex flex-col gap-1 pt-0.5 items-end">
+          <div className="flex flex-col gap-1 pt-0.5 items-end flex-shrink-0">
             <span className="text-sm text-gray-600 whitespace-nowrap">
               {encounter.period.start && (
                 <span>
@@ -567,15 +567,15 @@ const EncounterSheetTrigger = () => {
       <CardContent className="flex flex-col px-3 py-2 gap-1">
         <div className="absolute right-0 h-8 w-1 bg-primary-600 rounded-l inset-y-1/2 -translate-y-1/2" />
         <div className="flex justify-between items-start">
-          <div className="flex flex-col items-start gap-1">
-            <span className="text-base font-semibold">
+          <div className="flex flex-col items-start gap-1 min-w-0">
+            <span className="text-base font-semibold truncate w-full text-left">
               {t(`encounter_class__${encounter.encounter_class}`)}
             </span>
-            <span className="text-sm font-medium text-gray-700 truncate max-w-40">
+            <span className="block text-sm font-medium text-gray-700 truncate max-w-58">
               {encounter.facility.name}
             </span>
           </div>
-          <div className="flex gap-1 items-center justify-center">
+          <div className="flex gap-1 items-center justify-center flex-shrink-0">
             <div className="flex flex-col gap-1 items-end ">
               <span className="text-sm text-gray-600 whitespace-nowrap">
                 {encounter.period.start && (
@@ -663,7 +663,7 @@ const EncounterDetailsHoverCard = ({
             <span className="text-xs text-gray-500 font-medium">
               {t("facility")}
             </span>
-            <span className="text-sm text-gray-800 truncate max-w-72">
+            <span className="block text-sm text-gray-800 truncate max-w-72">
               {encounter.facility.name}
             </span>
           </div>
@@ -677,7 +677,7 @@ const EncounterDetailsHoverCard = ({
               <span className="text-xs text-gray-500 font-medium">
                 {t("location")}
               </span>
-              <span className="text-sm text-gray-800 truncate max-w-72">
+              <span className="block text-sm text-gray-800 truncate max-w-72">
                 {encounter.current_location.name}
               </span>
             </div>
@@ -713,11 +713,11 @@ const EncounterDetailsHoverCard = ({
                     key={`${member.member.id}-${index}`}
                     className="flex items-center gap-2"
                   >
-                    <span className="text-sm text-gray-800 truncate max-w-48">
+                    <span className="block text-sm text-gray-800 truncate max-w-48">
                       {formatName(member.member)}
                     </span>
                     {member.role.display && (
-                      <span className="text-xs text-gray-500 truncate max-w-24">
+                      <span className="block text-xs text-gray-500 truncate max-w-24">
                         ({member.role.display})
                       </span>
                     )}

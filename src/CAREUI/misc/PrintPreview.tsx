@@ -37,13 +37,36 @@ export default function PrintPreview(props: Props) {
   const { t } = useTranslation();
   useShortcutSubContext();
 
-  const { isPrinting } = useAutoPrint({
+  const { isPrinting, countdown, cancelCountdown } = useAutoPrint({
     ...props.autoPrint,
     enabled: (props.autoPrint?.enabled ?? false) && !props.disabled,
   });
 
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex flex-col items-center justify-center">
+      {countdown !== undefined && (
+        <div className="fixed bottom-8 sm:bottom-12 left-1/2 -translate-x-1/2 z-50 flex items-center gap-4 rounded-full border border-gray-200 bg-white px-4 py-2 text-gray-950 shadow-2xl animate-in fade-in slide-in-from-bottom-4 duration-300">
+          <div className="flex items-center gap-2">
+            <CareIcon
+              icon="l-history"
+              className="text-lg animate-spin-slow text-primary-600"
+            />
+            <p className="font-medium tabular-nums text-sm truncate max-w-[200px] sm:max-w-none">
+              {t("returning_back_in_seconds", { seconds: countdown })}
+            </p>
+          </div>
+          <div className="h-4 w-px bg-gray-200" />
+          <Button
+            variant="ghost"
+            size="sm"
+            className="h-8 px-2 text-gray-500 hover:text-gray-900 hover:bg-gray-100 rounded-full"
+            onClick={cancelCountdown}
+          >
+            {t("cancel")}
+          </Button>
+        </div>
+      )}
+
       <Page
         title={props.title}
         options={

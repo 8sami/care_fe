@@ -4741,6 +4741,7 @@
   "returned": "Returned",
   "returned_items": "Returned items",
   "returned_payments": "Returned payments",
+  "returning_back_in_seconds": "Returning back in {{seconds}} seconds...",
   "review_and_finalise_request": "Review and finalise this request order",
   "review_and_finalise_request_description": "Add more items if needed, or approve to mark this delivery as requested.",
   "review_before": "Review Before",
